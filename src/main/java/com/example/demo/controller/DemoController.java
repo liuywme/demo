@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,9 +22,20 @@ public class DemoController {
     @Value("${age}")
     private String age;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/hello")
     public String hello() {
         log.error("test");
         return "hello spring boot!" + name + ":" + age;
     }
+
+    @RequestMapping("/user")
+    public String queryUserById() {
+        User user = userService.selectByPrimaryKey(1);
+        return user.toString();
+    }
+
+
 }

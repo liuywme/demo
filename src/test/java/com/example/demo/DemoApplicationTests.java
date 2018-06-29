@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import com.example.demo.controller.DemoController;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +27,9 @@ public class DemoApplicationTests {
 	@Autowired
 	private DemoController demoController;
 
+	@Autowired
+	private UserMapper userMapper;
+
 	@Before
 	public void init() throws Exception{
 		mockMvc = MockMvcBuilders.standaloneSetup(demoController).build();
@@ -35,6 +40,12 @@ public class DemoApplicationTests {
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn();
+	}
+
+	@Test
+	public void queryUser() {
+		User user = userMapper.selectByPrimaryKey(1);
+		System.out.println(user.toString());
 	}
 
 }
