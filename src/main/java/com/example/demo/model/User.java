@@ -82,4 +82,18 @@ public class User {
     public void setUserRegistered(Date userRegistered) {
         this.userRegistered = userRegistered;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userLogin='" + userLogin + '\'' +
+                ", userPass='" + userPass + '\'' +
+                ", userNicename='" + userNicename + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userStatus=" + userStatus +
+                ", userRight=" + userRight +
+                ", userRegistered=" + userRegistered +
+                '}';
+    }
 }
